@@ -1,0 +1,19 @@
+---
+#
+# ─── INSTALL XPANES ─────────────────────────────────────────────────────────────
+#
+
+- name: prepare auxilliary utilities
+  apt: name=software-properties-common state=present update_cache=yes
+  become: true
+
+- apt_repository:
+    repo: "ppa:greymd/tmux-xpanes"
+    state: present
+  become: true
+
+- name: prepare auxilliary utilities
+  apt: name={{ item }} state=present update_cache=yes
+  become: true
+  with_items:
+    - tmux-xpanes
